@@ -32,14 +32,14 @@ public class RegistrationServiceREST implements RegistrationService {
 	String registration_url;
 	
 	public RegistrationServiceREST() {
-		System.out.println("REST registration service ");
+		System.out.println("REST registration service");
 	}
 	
 	@Override
 	public void sendFinalGrades(int course_id , FinalGradeDTO[] grades) { 
-		
+		String url = registration_url + "/" + course_id;
 		//TODO use restTemplate to send final grades to registration service
-		restTemplate.put("/course/{course_id}/finalgrades", grades);
+		restTemplate.put(url, grades);
 	}
 	
 	@Autowired
@@ -74,7 +74,6 @@ public class RegistrationServiceREST implements RegistrationService {
 		en.setStudentName(enrollmentDTO.studentName());
 		enrollmentRepository.save(en);
 		return (enrollmentDTO);		
-		
 	}
 
 }
